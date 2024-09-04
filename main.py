@@ -18,7 +18,7 @@ file_selector = st.file_uploader("Upload a reference audio file", type=["wav"])
 # Button to send request
 if st.button("Convert to Speech"):
     if auth_key == access_token:
-        if text_input:
+        if text_input and file_selector:
             try:
                 with st.spinner("Converting text to speech..."):
                     file_data = file_selector.read()
@@ -37,9 +37,13 @@ if st.button("Convert to Speech"):
                         print("making audio element")
                         # Play the received audio data
                         st.audio(audio_data, format='audio/mp3')
+                        st.text("Feel free to regenerate till audio is satisfiable")
 
                     else:
-                        st.error(f"Error: {response.status_code} - {response.text}, please try again")
+                        if response.status_code == 500:
+                            st.error("Server error, please try again with a smaller (size) wav file.")
+                        else:
+                            st.error(f"Error: {response.status_code} - {response.text}, please try again")
 
             except Exception as e:
                 st.error(f"An error occurred: {str(e)}")
