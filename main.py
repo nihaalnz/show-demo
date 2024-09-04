@@ -3,7 +3,7 @@ import streamlit as st
 import requests
 
 # Streamlit UI
-st.title("Text to Speech Converter")
+st.title("CAMB AI - Text to Speech")
 
 url = "https://model-4w79lm13.api.baseten.co/development/predict"
 headers={"Authorization": f"Api-Key {st.secrets.get('api_key')}"}
