@@ -48,6 +48,6 @@ if st.button("Convert to Speech"):
             except Exception as e:
                 st.error(f"An error occurred: {str(e)}")
         else:
-            st.warning("Please enter some text to convert.")
+            st.warning("Please enter some text to convert and submit audio file.")
     else:
         st.warning("Invalid access token. Please make sure it is correct as what was given.")
